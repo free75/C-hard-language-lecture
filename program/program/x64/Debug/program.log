@@ -1,9 +1,2 @@
 ﻿  source.c
-C:\Users\Administrator\Desktop\C-hard-language-lecture\program\source.c(11,14): warning C4013: 'rand'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\Administrator\Desktop\C-hard-language-lecture\program\source.c(47,2): warning C4013: 'srand'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\Administrator\Desktop\C-hard-language-lecture\program\source.c(47,8): warning C4013: 'time'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\Administrator\Desktop\C-hard-language-lecture\program\source.c(72,9): warning C4068: 알 수 없는 pragma 'endreigon'
-C:\Users\Administrator\Desktop\C-hard-language-lecture\program\source.c(78,9): warning C4068: 알 수 없는 pragma 'endreigon'
-C:\Users\Administrator\Desktop\C-hard-language-lecture\program\source.c(84,9): warning C4068: 알 수 없는 pragma 'endreigon'
-C:\Users\Administrator\Desktop\C-hard-language-lecture\program\source.c(90,9): warning C4068: 알 수 없는 pragma 'endreigon'
   program.vcxproj -> C:\Users\Administrator\Desktop\C-hard-language-lecture\program\x64\Debug\program.exe
