@@ -7,6 +7,9 @@
       "RelativeMoniker": "D:0:0:{5F9B776F-6B3A-42B9-8650-ACD6A682502D}|program.vcxproj|solutionrelative:source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{10561CDF-6E5B-4A05-B424-E71D4F6BBAF9}|..\\Class4th (Color System)\\Class4th (Color System).vcxproj|C:\\Users\\Administrator\\Desktop\\C-hard-language-lecture\\Class4th (Color System)\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FD6B90B2-3445-4DFE-841F-8280263D4E7E}|..\\Class3th (File Input and Output)\\Class3th (File Input and Output).vcxproj|C:\\Users\\Administrator\\Desktop\\C-hard-language-lecture\\Class3th (File Input and Output)\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -23,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "source.c",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\C-hard-language-lecture\\Class4th (Color System)\\source.c",
+              "RelativeDocumentMoniker": "..\\Class4th (Color System)\\source.c",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\C-hard-language-lecture\\Class4th (Color System)\\source.c",
+              "RelativeToolTip": "..\\Class4th (Color System)\\source.c",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAqwG8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-04-21T10:29:30.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\C-hard-language-lecture\\Class3th (File Input and Output)\\source.c",
               "RelativeDocumentMoniker": "..\\Class3th (File Input and Output)\\source.c",
@@ -35,12 +51,11 @@
               "RelativeToolTip": "..\\Class3th (File Input and Output)\\source.c",
               "ViewState": "AgIAAEQAAAAAAAAAAAAgwGkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2026-04-20T10:36:44.395Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-20T10:36:44.395Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\C-hard-language-lecture\\Class2th (Time System)\\source.c",
               "RelativeDocumentMoniker": "..\\Class2th (Time System)\\source.c",
@@ -48,12 +63,11 @@
               "RelativeToolTip": "..\\Class2th (Time System)\\source.c",
               "ViewState": "AgIAADwAAAAAAAAAAAAxwHAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2026-04-15T10:05:25.821Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-15T10:05:25.821Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "source.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\C-hard-language-lecture\\Class 1th (lnput system)\\source.c",
               "RelativeDocumentMoniker": "..\\Class 1th (lnput system)\\source.c",
@@ -61,8 +75,7 @@
               "RelativeToolTip": "..\\Class 1th (lnput system)\\source.c",
               "ViewState": "AgIAADoAAAAAAAAAAAAxwE0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2026-04-14T09:12:46.717Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-14T09:12:46.717Z"
             },
             {
               "$type": "Document",
