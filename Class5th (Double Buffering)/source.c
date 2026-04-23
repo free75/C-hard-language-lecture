@@ -1,0 +1,185 @@
+#include <stdio.h>
+#include <windows.h>
+#include <conio.h> // double buffer를 사용하기 위해 쓰는 명령어들입니다.
+#define UP 72
+#define LEFT 75
+#define RIGHT 77
+#define DOWN 80
+
+
+int index = 0;
+HANDLE screen[2];
+
+// main 전에 선언해야 합니다.
+
+int size = sizeof(screen) / sizeof(screen[0]);
+
+void initialize()
+{
+	CONSOLE_CURSOR_INFO	cursor;
+
+	cursor.bVisible = FALSE;
+
+	for (int i = 0; i < size; i++)
+	{
+		// 화면 버퍼를 2개 생성합니다.
+		screen[i] = CreateConsoleScreenBuffer
+		(
+			GENERIC_READ | GENERIC_WRITE,
+			0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL
+		);
+
+		SetConsoleCursorInfo(screen[i], &cursor);
+
+	}
+
+	//screen[0] = CreateConsoleScreenBuffer
+	//(
+	//	GENERIC_READ | GENERIC_WRITE,
+	//	0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL
+	//);
+	//
+	//screen[1] = CreateConsoleScreenBuffer
+	//(
+	//	GENERIC_READ | GENERIC_WRITE,
+	//	0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL
+	//);
+	//
+	//cursor.bVisible = FALSE;
+	//
+	//SetConsoleCursorInfo(screen[0], &cursor);
+	//SetConsoleCursorInfo(screen[1], &cursor);
+
+
+}
+
+void filp()
+{
+	SetConsoleActiveScreenBuffer(screen[index]);
+
+	index = !index; // 1이면 0, 0이면 1로 항상 반전시켜서 값을 가져오도록 만들어줍니다.
+}
+
+void clear()
+{
+	COORD position = { 0, 0 };
+
+	DWORD dword;
+
+	CONSOLE_SCREEN_BUFFER_INFO buffer;
+
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	GetConsoleScreenBufferInfo(console, &buffer);
+
+	int width = buffer.srWindow.Right - buffer.srWindow.Left + 1;
+	int height = buffer.srWindow.Bottom - buffer.srWindow.Top + 1;
+
+	FillConsoleOutputCharacter(screen[index], ' ', width * height, position, &dword);
+
+
+}
+
+// 콘솔 창 화면의 크기를 구하는 명령어 
+
+void release()
+{
+	for (int i = 0; i < size; i++)
+	{
+		CloseHandle(screen[i]);
+	}
+}
+
+void render(int x, int y, const char* character)
+{
+	DWORD dword;
+	COORD position = { x, y };
+
+	SetConsoleCursorPosition(screen[index], position);
+	WriteFile(screen[index], character, strlen(character), &dword, NULL);
+}
+
+// 2026 4. 22 목표
+// 더블 버퍼를 사용하여 콘솔 화면에 거슬리는 커서를 비활성화시키기
+
+int main()
+{
+	CONSOLE_SCREEN_BUFFER_INFO buffer;
+
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	GetConsoleScreenBufferInfo(console, &buffer);
+
+	int width = buffer.srWindow.Right - buffer.srWindow.Left - 2;
+	int height = buffer.srWindow.Bottom - buffer.srWindow.Top;
+
+	initialize();
+
+	int x = 0;
+	int y = 0;
+
+	char key = 0;
+
+	// _getch() 특정한 값을 반환하게 만들어주는 명령어입니다.
+	// Scan code로 UP은 72, LEFT는 75, RIGHT는 77, DOWN은 80입니다.
+
+	while (1)
+	{
+		filp();
+
+		clear();
+
+		if (_kbhit()) // 명령어 _kbhit는 콘솔 창에서 버퍼 중 깨지는 현상 혹은 버그 등을 막아내는 코드입니다.
+		{
+		
+
+		key = _getch();
+
+		if (key == -32) continue;
+
+		// 예시
+		// if (key == -32 || key == 0)
+		// { key = _getch(); }
+
+		switch (key)
+		{
+		case UP: if (y > 0) { y--; }
+			   // 시작지점이 (0, 0) 그리고 제 4사분면 쪽이기 때문에,
+			   // 실행되는 콘솔 창에선 UP과 LEFT는 0을 초과한 값을 적으면 움직이려해도 움직이지
+			   // 않기 때문에 0을 고정해서 사용하고, RIGHT와 DOWN은 UP과 LEFT와는 다르게 0보다 큰 수로
+			   // 써야 화면이 움직이도록 만들어 낼 수 있습니다.
+			   break;
+		case LEFT: if (x > 0) { x -= 2; }
+				 break;
+		case RIGHT: if (width > x) { x += 2; }
+				  break;
+		case DOWN: if (height > y) { y++; };
+				 break;
+		default: render(x, y, "excaption\n");
+			break;
+			// 하지만 이대로 실행한다면 excaption이 버그로 화면에 출력될 때가 존재하는데,
+			// key의 _getch 값을 -32로 선언할 경우 기존에 if문을 선언하기 전에 key의 값dp 32라는 값이 고정적으로 들어가게 되는 것을
+			// 막음과 동시에 버그로 콘솔 창의 화면에 UP, LEFT, RIGHT, DOWN을 할때마다 버그로 출력되던 excaption이 사라지는 것을 볼 수 있습니다.
+		}
+	}
+
+
+		render(x, y, " * ");
+
+		// Sleep(100);
+		// 말그대로 느리게 만들어 주는 명령어로 선언한 코드의 이동 속도가 너무 빠를때
+		// 사용하는 명령어입니다.
+
+	}
+
+	release();
+
+	// c언어의 함수 좌표계는 상시적으로 x는 +, y는 -로 설정되어 있기 때문에
+	// 이걸 유의하면서 사용해야합니다.
+
+	// x축으로 한 칸씩 이동하려면 1칸씩 움직이면 반 칸 가량만 움직이기 때문에 2 칸씩 움직여야 합니다.
+
+
+
+	return 0;
+}
